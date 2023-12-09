@@ -8,7 +8,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Image from 'next/image';
 import logo from '../../assets/Group.png'
-import { IconButton } from '@mui/material';
+import { IconButton, Stack } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -39,23 +39,28 @@ const navItems = [
         pathname:'/about',
     },
     
-
 ]
 
 const Navbar=()=> {
 
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className='bg-black'>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
         <Image src={logo} width={100} height={100} alt='image'/>
-          <Box >
+          <Box className='w-full text-center'>
             {navItems.map((page) => (
               <Link key={page} href={page.pathname}><Button className='text-white'>{page.route}</Button></Link>
             ))}
           </Box>
+          
           <Box>
+            <Stack direction='row' sx={{
+                '& svg':{
+                    color:"white"
+                }
+            }}>
             <IconButton>
                 <FacebookIcon></FacebookIcon>
             </IconButton>
@@ -68,7 +73,9 @@ const Navbar=()=> {
             <IconButton>
                 <EmailIcon></EmailIcon>
             </IconButton>
+            </Stack>
           </Box>
+          
         </Toolbar>
       </Container>
     </AppBar>
